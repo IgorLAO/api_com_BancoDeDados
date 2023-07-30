@@ -1,0 +1,32 @@
+.MainSpot{
+    display: flex;
+    flex-direction: column;
+    .musicas{
+        display: flex;
+        flex-wrap: wrap;
+       
+        .cardAlbums{
+            display: flex;
+            flex-direction: column;
+            background-color: #181818;
+            max-width: 180px;
+            align-items: center;
+            margin: 17px;
+            padding: 10px 20px ;
+            border-radius: 8px;
+            color: #fff;
+            flex-wrap: wrap;
+            max-height: 270px;
+            h4{
+                margin-bottom: -15px;
+            }
+            h6{
+                margin-bottom: 10px;
+            }
+            img{
+                width: 140.54px;
+                height: 140px;
+            }
+        }
+    }
+}
