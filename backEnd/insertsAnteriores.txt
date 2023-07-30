@@ -1,0 +1,35 @@
+**** inserts Spotify****
+
+('Estilo Cachorro', 'Racionais Mcs', '00:07:00' , '2002/11/27', 'Nada Como um Dia Após o Outro Dia, Vol. 1 & 2', 'https://upload.wikimedia.org/wikipedia/pt/6/62/Nada_como_um_dia_ap%C3%B3s_o_outro_dia.jpg' ),
+				('Diario de um Detento', 'Racionais Mcs', '00:07:00', '1997/12/30', 'Sobrevivendo no Inferno', 'https://upload.wikimedia.org/wikipedia/pt/thumb/3/36/Sobrevivendo_no_Inferno.jpg/220px-Sobrevivendo_no_Inferno.jpg'),
+                ('The World is Yours', 'Nas', '00:05:00', '1994/04/19', 'Illmatic', 'https://upload.wikimedia.org/wikipedia/pt/9/9c/Illmatic.jpg'),
+                ('All Caps', 'Madvillan', '00:02:35', '2004/03/19', 'Madvillainy', 'https://upload.wikimedia.org/wikipedia/en/5/5e/Madvillainy_cover.png'),
+                ('Alright', 'Kendrick Lamar', '00:03:45', '2015/03/15', 'To Pimp a Butterfly', 'https://upload.wikimedia.org/wikipedia/en/f/f6/Kendrick_Lamar_-_To_Pimp_a_Butterfly.png' ),
+                ('Wesleys theory', 'Kendrick Lamar', '00:05:15', '2015/03/15', 'To Pimp a Butterfly', 'https://upload.wikimedia.org/wikipedia/en/f/f6/Kendrick_Lamar_-_To_Pimp_a_Butterfly.png'),
+-**---------------*---***-----------------
+
+
+
+
+
+
+
+import 'dotenv/config'
+import { listarMusica } from './BD/bd.js';
+import express, {request, response} from 'express'
+import cors from 'cors'
+
+const server = express();
+server.use(cors());
+
+server.listen(process.env.PORT, () => console.log(`
+        SERVER ONLINE NA PORTA ${process.env.PORT}
+        ACESSE EM: http://localhost:5000/ `))
+
+
+        
+        
+        server.get('/', async (request, response) => {
+                let data1 = await listarMusica();
+                response.json(data1);
+        });
