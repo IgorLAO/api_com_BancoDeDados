@@ -17,13 +17,23 @@ SELECT *
 	WHERE DS_TASK LIKE '%a%';
     
 -- FINISHED TASKS
-SELECT *
+	SELECT 	ID_TASK 			id,
+			DS_TASK				tarefa,
+			BT_FINISHED 		finalizado,
+			DT_CADASTRO			cadastrado	
 	FROM TB_TASKS
 WHERE BT_FINISHED = TRUE;
 
 -- DELETE TASK
 DELETE FROM TB_TASKS
 	WHERE ID_TASK = 2;
+    
+-- ALTERAR TASK
+UPDATE  TB_TASKs
+	SET DS_TASK		  = 'FAZER UMA tarefa',
+		BT_FINISHED   = false,
+        DT_CADASTRO	  = '2023/08/21'
+        WHERE ID_TASK = 15;
 
 
 

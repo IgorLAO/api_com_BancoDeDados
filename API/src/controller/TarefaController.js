@@ -1,17 +1,17 @@
 import { Router } from "express";
-import  {  listarTarefas, InsertTask, DeleteTask } from "../repository/tarefaRepository.js";
+import  {  listarTarefas, InsertTask, DeleteTask, ChangeTask } from "../repository/tarefaRepository.js";
 
-let endpoint = Router();
+let server = Router();
 
-endpoint.get('/tasks', async (req, resp) =>{
+server.get('/tasks', async (req, resp) =>{
     let dados = await listarTarefas();
     resp.send(dados);
 })
 
 
-endpoint.post('/task', async(req, resp) =>{
+server.post('/task', async(req, resp) =>{
         try {
-            const AddTask = req.body;
+            const AddTask = req.body; 
 
             const data = await InsertTask(AddTask);
 
@@ -23,15 +23,34 @@ endpoint.post('/task', async(req, resp) =>{
         }
 })
 
-endpoint.delete('/tasks/:id', async (req, resp) =>{
+server.delete('/task/:id', async (req, resp) =>{
     const { id } = req.params;
 
     const response = await DeleteTask(id)
 
-    resp.status(204).send()
+    resp.status(204).send('changed task')
 
 })
 
+ server.put('/task/:id', async (req, resp) =>{
+    try {
+        const { id } = req.params;
+        const task  = req.body;
+        const resposta = await ChangeTask(task, id)
+        if(resposta != 1)
+            throw new Error('O filme não pode ser alterado')
+        else
+            resp.status(204).send()
+
+    } catch (err) {
+        resp.send(400).send({
+            erro: err.message
+        })
+    }
+  
+ });
 
 
-export default endpoint;
+
+
+export default server;
